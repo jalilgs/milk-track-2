@@ -15,6 +15,7 @@ function ManageScreen({
   setTextSize,
   backupData,
   onRestore,
+  onBackupExported,
 }) {
   return (
     <section className="screen active">
@@ -45,7 +46,11 @@ function ManageScreen({
       <hr className="divider" />
 
       <h2>Sauvegarde &amp; Restauration</h2>
-      <BackupCard data={backupData} onRestore={onRestore} />
+      <BackupCard
+        data={backupData}
+        onRestore={onRestore}
+        onBackupExported={onBackupExported}
+      />
     </section>
   )
 }

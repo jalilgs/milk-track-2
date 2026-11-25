@@ -1,50 +1,53 @@
 :root {
-  /* Brand — Forest Sage Dairy */
-  --color-primary: #2f6f5e;
-  --color-primary-hover: #235447;
-  --color-primary-soft: #e6f2ee;
-  --color-primary-border: #b8d8cf;
+  /* Brand and neutrals */
+  --color-brand: #2f6f5e;
+  --color-brand-strong: #1f4d41;
+  --color-brand-soft: #e5efeb;
+  --color-page: #f5f7f4;
+  --color-surface: #ffffff;
+  --color-line: #dde3de;
+  --color-text: #1b2420;
+  --color-text-muted: #54605a;
 
-  /* Surfaces */
-  --bg-app: #f4f6f5;
-  --bg-surface: #ffffff;
-  --bg-subtle: #eef2f0;
-  --bg-modal-overlay: rgba(17, 24, 39, 0.58);
+  /* Products */
+  --milk-main: #d9a21b;
+  --milk-ink: #6b4700;
+  --milk-soft: #fbf0cc;
+  --lben-main: #3b78c2;
+  --lben-ink: #1d4b87;
+  --lben-soft: #e3edf9;
 
-  /* Typography */
-  --text-primary: #111827;
-  --text-secondary: #52606d;
-  --text-muted: #7b8794;
-  --text-inverse: #ffffff;
+  /* Status */
+  --paid-main: #2f7d5b;
+  --paid-ink: #1f6a4d;
+  --paid-soft: #dff1e8;
+  --unpaid-main: #c0453a;
+  --unpaid-ink: #8c2a21;
+  --unpaid-soft: #fbe8e5;
+  --pending-main: #7a8190;
+  --pending-ink: #4a505c;
+  --pending-soft: #eceef2;
 
-  /* Product Accents */
-  --milk-bg: #e0f2fe;
-  --milk-text: #0369a1;
-  --milk-border: #bae6fd;
+  /* Text sizes and weights */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --weight-normal: 500;
+  --weight-bold: 700;
+  --weight-heavy: 800;
 
-  --lben-bg: #fef3c7;
-  --lben-text: #b45309;
-  --lben-border: #fde68a;
-
-  /* Semantic Statuses */
-  --color-success: #15803d;
-  --color-success-bg: #dcfce7;
-  --color-danger: #dc2626;
-  --color-danger-bg: #fee2e2;
-  --color-warning: #d97706;
-  --color-warning-bg: #fef3c7;
-
-  /* Borders & Elevation */
-  --border-color: #dce3e0;
+  /* Spacing, radii, shadow, tap size */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-pill: 9999px;
-
-  --shadow-card: 0 2px 6px rgba(17, 24, 39, 0.05), 0 1px 2px rgba(17, 24, 39, 0.04);
-  --shadow-sheet: 0 -8px 28px rgba(17, 24, 39, 0.22);
-
-  /* Layout */
-  --tabbar-height: 64px;
-  --content-max-width: 600px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --shadow-overlay: 0 -8px 24px rgb(27 36 32 / 0.12);
+  --tap: 44px;
 }

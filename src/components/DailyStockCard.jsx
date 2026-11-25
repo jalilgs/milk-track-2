@@ -73,16 +73,26 @@ function DailyStockCard({ dailyStock, setDailyStock, sales }) {
         </div>
       </div>
 
-      <div className="stat-strip">
+<div className="stat-strip">
         <div className="stat-block stat-block--milk">
           <span className="stat-label">Lait vendu</span>
           <span className="stat-figure">{milkSold}</span>
-          <span className="stat-sub">Restant <strong>{milkRemaining}</strong></span>
+          <span className="stat-sub">
+            Restant{' '}
+            <strong className={milkRemaining < 0 ? 'negative-num' : ''}>
+              {milkRemaining}
+            </strong>
+          </span>
         </div>
         <div className="stat-block stat-block--lben">
           <span className="stat-label">Lben vendu</span>
           <span className="stat-figure">{lbenSold}</span>
-          <span className="stat-sub">Restant <strong>{lbenRemaining}</strong></span>
+          <span className="stat-sub">
+            Restant{' '}
+            <strong className={lbenRemaining < 0 ? 'negative-num' : ''}>
+              {lbenRemaining}
+            </strong>
+          </span>
         </div>
       </div>
     </div>

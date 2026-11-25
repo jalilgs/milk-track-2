@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from '../components/Header'
+import BackupBanner from '../components/BackupBanner'
 import DailyStockCard from '../components/DailyStockCard'
 import DailyMoneyCard from '../components/DailyMoneyCard'
 import GroupAccordion from '../components/GroupAccordion'
@@ -7,14 +8,24 @@ import SaleModal from '../components/SaleModal'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { isToday, sumBy } from '../utils'
 
-function ClientsScreen({ sales, setSales, clients, groups, prices, dailyStock, setDailyStock }) {
+function ClientsScreen({
+  sales,
+  setSales,
+  clients,
+  groups,
+  prices,
+  dailyStock,
+  setDailyStock,
+  backupData,
+  lastBackup,
+  setLastBackup,
+}) {
   const [openGroups, setOpenGroups] = useLocalStorage('milk_app_open_groups', {})
   const [selectedClient, setSelectedClient] = useState(null)
 
   const todaySales = sales.filter((s) => isToday(s.date))
   const activeClients = clients.filter((c) => c.isActive !== false)
 
-  // One section per group, plus one for clients without a group
   const sections = groups.map((g) => ({
     key: `group-${g.id}`,
     title: g.name,
@@ -33,7 +44,6 @@ function ClientsScreen({ sales, setSales, clients, groups, prices, dailyStock, s
 
   const visibleSections = sections.filter((s) => s.clients.length > 0)
 
-  // Marks the client's unpaid amount of today as paid
   function handleQuickPay(clientId) {
     const clientSales = todaySales.filter((s) => s.clientId === clientId)
     const lastSale = clientSales[clientSales.length - 1]
@@ -54,6 +64,12 @@ function ClientsScreen({ sales, setSales, clients, groups, prices, dailyStock, s
   return (
     <section className="screen active">
       <Header title="Livraisons du jour" />
+
+      <BackupBanner
+        backupData={backupData}
+        lastBackup={lastBackup}
+        onBackupDone={setLastBackup}
+      />
 
       <DailyStockCard dailyStock={dailyStock} setDailyStock={setDailyStock} sales={sales} />
       <DailyMoneyCard sales={sales} />

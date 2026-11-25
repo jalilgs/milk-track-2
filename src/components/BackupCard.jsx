@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import { exportBackup, parseBackup } from '../backup'
 
-function BackupCard({ data, onRestore }) {
+function BackupCard({ data, onRestore, onBackupExported }) {
   const [status, setStatus] = useState({ text: '', error: false })
 
   function handleExport() {
     exportBackup(data)
+    const now = new Date().toISOString()
+    localStorage.setItem('milk_app_last_backup', now)
+    if (onBackupExported) onBackupExported(now)
     setStatus({ text: 'Sauvegarde exportée.', error: false })
   }
 
   async function handleImport(e) {
     const file = e.target.files[0]
-    e.target.value = '' // lets you choose the same file again later
+    e.target.value = ''
     if (!file) return
 
     const backup = parseBackup(await file.text())

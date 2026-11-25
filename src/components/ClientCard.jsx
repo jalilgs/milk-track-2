@@ -18,8 +18,10 @@ function ClientCard({ client, todaySales, onOpen, onQuickPay }) {
   const totalLben = sumBy(clientSales, 'lbenQty')
   const totalAmount = sumBy(clientSales, 'totalAmount')
   const totalPaid = sumBy(clientSales, 'paidAmount')
-  const isFullyPaid = totalPaid >= totalAmount
-  const statusClass = isFullyPaid ? 'paid' : 'unpaid'
+
+  const isOverpaid = totalPaid > totalAmount
+  const isUnpaid = totalPaid < totalAmount
+  const statusClass = isOverpaid ? 'overpaid' : isUnpaid ? 'unpaid' : 'paid'
 
   return (
     <div className={`client-card has-sale ${statusClass}`} onClick={() => onOpen(client)}>
@@ -36,13 +38,15 @@ function ClientCard({ client, todaySales, onOpen, onQuickPay }) {
             {formatMoney(totalAmount)}
           </span>
           <div className={`client-status-line client-status-line--${statusClass}`}>
-            {isFullyPaid
-              ? 'Payé intégralement'
-              : `Doit ${formatMoney(totalAmount - totalPaid)}`}
+            {isOverpaid
+              ? `Surplus +${formatMoney(totalPaid - totalAmount)}`
+              : isUnpaid
+                ? `Doit ${formatMoney(totalAmount - totalPaid)}`
+                : 'Payé intégralement'}
           </div>
         </div>
 
-        {!isFullyPaid && (
+        {isUnpaid && (
           <button
             type="button"
             className="quick-pay-btn"

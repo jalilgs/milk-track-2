@@ -16,16 +16,14 @@ function App() {
   const [dailyStock, setDailyStock] = useLocalStorage('milk_app_daily_stock', [])
   const [groups, setGroups] = useLocalStorage('groups', [])
   const [textSize, setTextSize] = useLocalStorage('milk_app_text_size', 'normal')
+  const [lastBackup, setLastBackup] = useLocalStorage('milk_app_last_backup', null)
 
-  // Your CSS reads the size from the <html> tag, which is outside React
   useEffect(() => {
     document.documentElement.setAttribute('data-text-size', textSize)
   }, [textSize])
 
-  // Everything that goes into a backup file
   const backupData = { prices, clients, sales, dailyStock, groups }
 
-  // Puts a backup back (the hook saves each value by itself)
   function restoreBackup(data) {
     if (data.prices) setPrices(data.prices)
     setClients(data.clients)
@@ -46,6 +44,9 @@ function App() {
             prices={prices}
             dailyStock={dailyStock}
             setDailyStock={setDailyStock}
+            backupData={backupData}
+            lastBackup={lastBackup}
+            setLastBackup={setLastBackup}
           />
         )}
         {activeTab === 'manage' && (
@@ -60,10 +61,16 @@ function App() {
             setTextSize={setTextSize}
             backupData={backupData}
             onRestore={restoreBackup}
+            onBackupExported={setLastBackup}
           />
         )}
         {activeTab === 'history' && (
-          <HistoryScreen sales={sales} clients={clients} />
+          <HistoryScreen
+            sales={sales}
+            setSales={setSales}
+            clients={clients}
+            prices={prices}
+          />
         )}
       </main>
 

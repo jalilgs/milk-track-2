@@ -1,22 +1,33 @@
 import { formatMoney } from '../utils'
 
-function SaleHistoryCard({ sale, clients }) {
-  const isFullyPaid = sale.paidAmount >= sale.totalAmount
+function SaleHistoryCard({ sale, clients, onEdit }) {
+  const isOverpaid = sale.paidAmount > sale.totalAmount
+  const isUnpaid = sale.paidAmount < sale.totalAmount
   const clientName = clients.find((c) => c.id === sale.clientId)?.name || 'Inconnu'
-  const statusClass = isFullyPaid ? 'is-paid' : 'is-unpaid'
+  const statusClass = isOverpaid ? 'is-overpaid' : isUnpaid ? 'is-unpaid' : 'is-paid'
 
   return (
-    <div className={`card history-sale-card ${statusClass}`}>
+    <div
+      className={`card history-sale-card ${statusClass}`}
+      onClick={() => onEdit && onEdit(sale)}
+      style={{ cursor: onEdit ? 'pointer' : 'default' }}
+    >
       <div className="sale-card-row">
         <strong className="sale-card-name">{clientName}</strong>
-        <span className="sale-card-total">{formatMoney(sale.totalAmount)}</span>
+        <span className={`sale-card-total ${statusClass}`}>
+          {formatMoney(sale.totalAmount)}
+        </span>
       </div>
       <div className="sale-card-meta">
         <span>
           Lait : <strong>{sale.milkQty}</strong> | Lben : <strong>{sale.lbenQty}</strong>
         </span>
         <span className={`sale-card-status ${statusClass}`}>
-          {isFullyPaid ? 'Payé intégralement' : `Payé : ${formatMoney(sale.paidAmount)}`}
+          {isOverpaid
+            ? `Payé : ${formatMoney(sale.paidAmount)} (+${formatMoney(sale.paidAmount - sale.totalAmount)})`
+            : isUnpaid
+              ? `Payé : ${formatMoney(sale.paidAmount)}`
+              : 'Payé intégralement'}
         </span>
       </div>
     </div>
