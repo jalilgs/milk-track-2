@@ -1,14 +1,34 @@
+import AccessibilityCard from '../components/AccessibilityCard'
 import PricesCard from '../components/PricesCard'
 import ManageClientsCard from '../components/ManageClientsCard'
 import GroupsCard from '../components/GroupsCard'
+import BackupCard from '../components/BackupCard'
 
-function ManageScreen({ prices, setPrices, clients, setClients, groups, setGroups }) {
+function ManageScreen({
+  prices,
+  setPrices,
+  clients,
+  setClients,
+  groups,
+  setGroups,
+  textSize,
+  setTextSize,
+  backupData,
+  onRestore,
+}) {
   return (
     <section className="screen active">
       <h1>Gérer</h1>
 
+      <h2>Accessibilité</h2>
+      <AccessibilityCard textSize={textSize} setTextSize={setTextSize} />
+
       <h2>Produits &amp; Prix</h2>
-      <PricesCard prices={prices} setPrices={setPrices} />
+      <PricesCard
+        key={`${prices.milk}-${prices.lben}-${prices.isLocked}`}
+        prices={prices}
+        setPrices={setPrices}
+      />
 
       <hr className="divider" />
 
@@ -21,6 +41,11 @@ function ManageScreen({ prices, setPrices, clients, setClients, groups, setGroup
         clients={clients}
         setClients={setClients}
       />
+
+      <hr className="divider" />
+
+      <h2>Sauvegarde &amp; Restauration</h2>
+      <BackupCard data={backupData} onRestore={onRestore} />
     </section>
   )
 }

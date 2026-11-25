@@ -109,3 +109,50 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+/* --- ACCESSIBILITY & TEXT SIZE SCALING --- */
+.text-size-btn.active-size {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* LARGE */
+html[data-text-size="large"] .client-name { font-size: 18px; }
+html[data-text-size="large"] .client-amount { font-size: 19px; }
+html[data-text-size="large"] .client-sale-summary { font-size: 14px; }
+html[data-text-size="large"] .client-status-line { font-size: 12px; }
+html[data-text-size="large"] .money-block__figure,
+html[data-text-size="large"] .price-figure { font-size: 18px; }
+html[data-text-size="large"] .stat-figure { font-size: 34px; }
+html[data-text-size="large"] .debt-amount,
+html[data-text-size="large"] .sale-card-name,
+html[data-text-size="large"] .sale-card-total { font-size: 17px; }
+
+/* VERY LARGE */
+html[data-text-size="xlarge"] .client-name { font-size: 21px; }
+html[data-text-size="xlarge"] .client-amount { font-size: 22px; }
+html[data-text-size="xlarge"] .client-sale-summary { font-size: 15px; }
+html[data-text-size="xlarge"] .client-status-line { font-size: 13px; }
+html[data-text-size="xlarge"] .money-block__figure,
+html[data-text-size="xlarge"] .price-figure { font-size: 20px; }
+html[data-text-size="xlarge"] .stat-figure { font-size: 38px; }
+html[data-text-size="xlarge"] .debt-amount,
+html[data-text-size="xlarge"] .sale-card-name,
+html[data-text-size="xlarge"] .sale-card-total { font-size: 19px; }
+
+/* Reminders, clouds and badges */
+html[data-text-size="large"] [class*="reminder"],
+html[data-text-size="large"] [class*="cloud"],
+html[data-text-size="large"] [class*="badge"],
+html[data-text-size="large"] .vide,
+html[data-text-size="large"] .empty-reminders,
+html[data-text-size="large"] .empty-state { font-size: 1.15em; }
+
+html[data-text-size="xlarge"] [class*="reminder"],
+html[data-text-size="xlarge"] [class*="cloud"],
+html[data-text-size="xlarge"] [class*="badge"],
+html[data-text-size="xlarge"] .vide,
+html[data-text-size="xlarge"] .empty-reminders,
+html[data-text-size="xlarge"] .empty-state { font-size: 1.30em; }
