@@ -36,13 +36,15 @@ function DailyStockCard({ dailyStock, setDailyStock, sales }) {
           <label className="product-label product-label--milk" htmlFor="stock-milk-owned">
             Lait
           </label>
-          <input
+<input
             type="number"
+            inputMode="numeric"
             id="stock-milk-owned"
             className="stock-input"
             placeholder="0"
             min="0"
             value={milkDraft}
+            style={{ '--chars': Math.max(3, String(milkDraft || '').length) }}
             onChange={(e) => setMilkDraft(e.target.value)}
             disabled={stock.isLocked}
           />
@@ -52,11 +54,13 @@ function DailyStockCard({ dailyStock, setDailyStock, sales }) {
           </label>
           <input
             type="number"
+            inputMode="numeric"
             id="stock-lben-owned"
             className="stock-input"
             placeholder="0"
             min="0"
             value={lbenDraft}
+            style={{ '--chars': Math.max(3, String(lbenDraft || '').length) }}
             onChange={(e) => setLbenDraft(e.target.value)}
             disabled={stock.isLocked}
           />

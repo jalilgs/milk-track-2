@@ -210,11 +210,63 @@ input:disabled {
   margin: 0;
 }
 
+/* Compact DailyStockCard Row */
 .stock-inputs {
-  display: grid;
-  grid-template-columns: auto 1fr auto 1fr auto;
+  display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+.stock-input {
+  width: calc(var(--chars, 3) * 1ch + 2rem);
+  min-width: 54px;
+  max-width: 110px;
+  height: 40px;
+  min-height: 40px;
+  text-align: center;
+  font-weight: var(--weight-heavy);
+  padding: 0 var(--space-2);
+  transition: width 0.12s ease;
+}
+
+.stock-inputs .btn-compact {
+  margin-left: auto;
+  height: 40px;
+  min-height: 40px;
+}
+
+/* Compact QtyControl (SaleModal) */
+.qty-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: auto;
+  flex-shrink: 0;
+}
+
+.qty-btn {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  font-size: var(--text-lg);
+  background-color: var(--color-page);
+  border: 1px solid var(--color-line);
+}
+
+.qty-control input {
+  width: calc(var(--chars, 3) * 1ch + 1.2rem);
+  min-width: 54px;
+  max-width: 115px;
+  height: 40px;
+  min-height: 40px;
+  text-align: center;
+  font-weight: var(--weight-heavy);
+  padding: 0 var(--space-2);
+  transition: width 0.12s ease;
 }
 
 .product-label {
@@ -238,12 +290,7 @@ input:disabled {
   color: var(--lben-ink);
 }
 
-.stock-input {
-  text-align: center;
-  font-weight: var(--weight-bold);
-  padding: var(--space-2) var(--space-1);
-  min-width: 0;
-}
+
 
 .stat-strip {
   display: grid;
@@ -672,28 +719,8 @@ input:disabled {
   color: var(--lben-ink);
 }
 
-.qty-control {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  width: 152px;
-}
 
-.qty-btn {
-  width: var(--tap);
-  min-width: var(--tap);
-  padding: 0;
-  font-size: var(--text-lg);
-  background-color: var(--color-page);
-  border: 1px solid var(--color-line);
-}
 
-.qty-control input {
-  text-align: center;
-  font-weight: var(--weight-heavy);
-  padding: var(--space-2) var(--space-1);
-}
 
 .qty-suggestions {
   display: none;

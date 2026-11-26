@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import QtyControl from './QtyControl'
 import {
   formatMoney,
@@ -139,9 +139,21 @@ function SaleModal({ client, sales, setSales, prices, onClose, saleToEdit = null
         month: 'short',
       })
     : null
+useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
 
   return (
-    <div className="modal-overlay active">
+    <div
+      className="modal-overlay active"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose()
+      }}
+    >
       <div className={`modal-content card ${saleToEdit ? 'modal-content--history' : ''}`}>
         {saleToEdit && (
           <div className="history-edit-banner">

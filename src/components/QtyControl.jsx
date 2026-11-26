@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 function QtyControl({ value, onChange, suggestions = [] }) {
   const [focused, setFocused] = useState(false)
+  const charCount = Math.max(3, String(value || '').length)
 
   function step(delta) {
     onChange(Math.max(0, (parseInt(value) || 0) + delta))
@@ -14,9 +15,11 @@ function QtyControl({ value, onChange, suggestions = [] }) {
       </button>
       <input
         type="number"
+        inputMode="numeric"
         placeholder="0"
         min="0"
         value={value}
+        style={{ '--chars': charCount }}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
