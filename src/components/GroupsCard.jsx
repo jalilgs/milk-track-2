@@ -3,19 +3,19 @@ import { useState } from 'react'
 function GroupsCard({ groups, setGroups, clients, setClients }) {
   const [name, setName] = useState('')
 
-  function handleSubmit(e) {
+  function handleAdd(e) {
     e.preventDefault()
     const trimmed = name.trim()
     if (!trimmed) return
-    setGroups([...groups, { id: 'grp_' + Date.now(), name: trimmed }])
+    setGroups([...groups, { id: Date.now(), name: trimmed }])
     setName('')
   }
 
-  function handleDelete(groupId) {
-    setGroups(groups.filter((g) => g.id !== groupId))
-    // clients of this group become "unassigned"
+  function handleDelete(group) {
+    if (!window.confirm(`Supprimer le groupe "${group.name}" ?`)) return
+    setGroups(groups.filter((g) => g.id !== group.id))
     setClients(
-      clients.map((c) => (c.groupId === groupId ? { ...c, groupId: '' } : c))
+      clients.map((c) => (c.groupId === group.id ? { ...c, groupId: '' } : c))
     )
   }
 
@@ -23,27 +23,44 @@ function GroupsCard({ groups, setGroups, clients, setClients }) {
     <div className="card">
       <h2>Gérer les groupes / tournées</h2>
 
-      <form id="addGroupForm" className="row-form" onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleAdd}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginTop: '12px',
+          marginBottom: '16px',
+        }}
+      >
         <input
           type="text"
           placeholder="Nom du groupe (ex. Bologhine)"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
+          style={{ flex: 1, minWidth: 0 }}
         />
-        <button type="submit" className="primary-btn btn-compact">
+        <button
+          type="submit"
+          className="primary-btn btn-compact"
+          style={{ flexShrink: 0 }}
+        >
           Ajouter
         </button>
       </form>
 
       {groups.length === 0 ? (
-        <p className="empty-hint">Aucun groupe / tournée ajouté.</p>
+        <p className="empty-hint">Aucun groupe créé.</p>
       ) : (
         <ul className="client-list">
           {groups.map((group) => (
             <li key={group.id}>
               <span className="client-name">{group.name}</span>
-              <button className="delete-btn" onClick={() => handleDelete(group.id)}>
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() => handleDelete(group)}
+              >
                 Supprimer
               </button>
             </li>

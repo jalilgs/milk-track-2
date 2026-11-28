@@ -7,6 +7,8 @@ import BackupCard from '../components/BackupCard'
 function ManageScreen({
   prices,
   setPrices,
+  buyPrices,
+  setBuyPrices,
   clients,
   setClients,
   groups,
@@ -29,6 +31,8 @@ function ManageScreen({
         key={`${prices.milk}-${prices.lben}-${prices.isLocked}`}
         prices={prices}
         setPrices={setPrices}
+        buyPrices={buyPrices}
+        setBuyPrices={setBuyPrices}
       />
 
       <hr className="divider" />

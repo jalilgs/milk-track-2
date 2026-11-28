@@ -211,11 +211,67 @@ input:disabled {
 }
 
 /* Compact DailyStockCard Row */
+/* Single-row Stock du jour (never wraps Valider onto a second line) */
 .stock-inputs {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  flex-wrap: nowrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.stock-inputs .product-label {
+  background: transparent;
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+
+.stock-inputs .product-label--milk {
+  color: var(--milk-ink);
+}
+
+.stock-inputs .product-label--lben {
+  color: var(--lben-ink);
+  margin-left: 2px;
+}
+
+.stock-input {
+  flex: 1 1 0;
+  width: calc(var(--chars, 3) * 1ch + 0.8rem);
+  min-width: 44px;
+  max-width: 76px;
+  height: 40px;
+  min-height: 40px;
+  text-align: center;
+  font-weight: var(--weight-heavy);
+  padding: 0 4px;
+}
+
+#stock-milk-owned {
+  background-color: var(--milk-soft);
+  border-color: var(--milk-main);
+  color: var(--milk-ink);
+}
+
+#stock-lben-owned {
+  background-color: var(--lben-soft);
+  border-color: var(--lben-main);
+  color: var(--lben-ink);
+}
+
+.stock-inputs .btn-compact {
+  margin-left: auto;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 var(--space-3);
+  flex-shrink: 0;
+}
+
+.stock-inputs .btn-compact {
+  height: 40px;
+  min-height: 40px;
 }
 
 .stock-input {
@@ -280,15 +336,7 @@ input:disabled {
   width: fit-content;
 }
 
-.product-label--milk {
-  background-color: var(--milk-soft);
-  color: var(--milk-ink);
-}
 
-.product-label--lben {
-  background-color: var(--lben-soft);
-  color: var(--lben-ink);
-}
 
 
 
@@ -301,6 +349,8 @@ input:disabled {
 .stat-block {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: var(--space-1);
   padding: var(--space-3);
   border-radius: var(--radius-sm);
@@ -870,6 +920,7 @@ input:disabled {
   border-radius: var(--radius-sm);
 }
 
+
 .debt-amount {
   font-weight: var(--weight-heavy);
   color: var(--unpaid-ink);
@@ -1222,4 +1273,24 @@ input:disabled {
   color: var(--unpaid-main) !important;
   font-weight: var(--weight-heavy);
   animation: pulseAlert .5s ease-in-out infinite;
+}
+
+/* GroupsCard & ManageClientsCard form layout + spacing */
+.card form.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.card form.form-group input {
+  flex: 1;
+  min-width: 0;
+}
+
+.card form.form-group button[type="submit"] {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
